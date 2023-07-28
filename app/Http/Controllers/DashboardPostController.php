@@ -35,25 +35,17 @@ class DashboardPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'image' => 'image|file|max:1024',
-            'content' => 'required'
-        ]);
-
-        if($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('post-images');
-        }
-
-        $validatedData['user_id'] = auth()->user()->id;
-
-        $validatedData['author'] = auth()->user()->name;
-
-        Post::create($validatedData);
-
+        // dd(request('post-trixFields')['content']);
+        $data = [
+            'title' => request('title'),
+            'content' => request('post-trixFields')['content'],
+            // 'image' => request('attachment-post-trixFields'),
+            'user_id' => auth()->user()->id,
+            'author' => auth()->user()->username,
+        ];
+        $dataPost = Post::updateOrCreate($data);
         return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
 

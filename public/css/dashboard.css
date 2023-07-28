@@ -82,6 +82,11 @@ body {
   right: 1rem;
 }
 
+.trix-content img {
+    width: 300px;
+    height: 300px;
+}
+
 .navbar .form-control {
   padding: .75rem 1rem;
   border-width: 0;
@@ -98,3 +103,5 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+

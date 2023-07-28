@@ -12,6 +12,12 @@
       <form method="post" action="/dashboard/posts/{{ $post->id }}">
         @method('put')
         @csrf
+        <div class="">
+            <a href="/dashboard/posts">
+            <span data-feather="arrow-left"></span>
+            </a>
+        </div>
+        <br>
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title', $post->title) }}">
@@ -44,10 +50,5 @@
 
 
 
-        <script>
-            document.addEventListener('trix-file-accept', function(e) {
-                e.preventDefault();
-            })
-          </script>
 
 @endsection

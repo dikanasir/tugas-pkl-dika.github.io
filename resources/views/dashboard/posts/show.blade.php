@@ -1,31 +1,34 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-
-
-<article class="mt-5 col-lg-8" style="height: 200px">
+<br>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2>
         {{ $post["title"] }}
     </h2>
+  </div>
 
-    <a href="/dashboard/posts" class="btn btn-success"><span data-feather="arrow-left"></span> Back to all my posts</a>
-    <a href="/dashboard/posts/{{ $post->id }}/edit" class="btn btn-warning"><span data-feather="edit"></span> Edit</a>
-    <form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
+<h5>
+    Author : {{ $post["author"] }}
+</h5>
+<a href="/dashboard/posts">
+    <button type="button" class="btn btn-success btn-sm"><span data-feather="arrow-left"></span> Back to Posts</button>
+</a>
+<a href="/dashboard/posts/{{ $post->id }}/edit">
+    <button type="button" class="btn btn-warning btn-sm"><span data-feather="edit"></span> Edit Post</button>
+</a>
+<form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
 
-        @method('delete')
-        @csrf
-        <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></span> Delete</button>
+    @method('delete')
+    @csrf
+    <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"><span data-feather="x-circle"></span> Delete Post</button>
 
-    </form>
+</form>
 
 
-    <h5 class="mt-3">
-        {{ $post["author"] }}
-    </h5>
-    <p>
-        {!! $post["content"] !!}
-    </p>
-    </article>
+<p>
+    {!! $post->content !!}
+</p>
 
 
 @endsection
